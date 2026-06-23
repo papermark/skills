@@ -15,10 +15,10 @@ metadata:
 
 # Papermark Overview
 
-Papermark is a document-sharing and virtual data room platform. Teams upload
-documents, share them behind secure, trackable links, organize them into data
-rooms for deals and due diligence, and see exactly who viewed what — down to
-per-page read time. It's the open-source alternative to DocSend.
+Papermark is a virtual data room and secure document-sharing platform. Teams
+build data rooms for deals and due diligence, share documents behind secure,
+trackable links, and see exactly who viewed what — down to per-page read time.
+It's the open-source alternative to DocSend.
 
 You can drive Papermark two ways, and both speak the same model below:
 

@@ -2,11 +2,11 @@
 name: papermark-cli
 description: >
   Drive Papermark from the command line with the published `papermark` CLI:
-  upload documents, create secure share links (password, email-gating, expiry,
-  watermarks, screenshot protection), build and organize data rooms for deals and
-  due diligence, and read view analytics — including in scripts and CI. Reach for
-  this when the user says things like "share this deck", "create a data room for
-  Acme", "who viewed my pitch", "send a password-protected link", or "how much time
+  build and organize data rooms for deals and due diligence, share documents
+  behind secure links (password, email-gating, expiry, watermarks, screenshot
+  protection), and read view analytics — including in scripts and CI. Reach for
+  this when the user says things like "create a data room for Acme", "share this
+  deck", "who viewed my pitch", "send a password-protected link", or "how much time
   did they spend on page 3", and a shell is available. For concepts and guardrails,
   see the papermark-overview skill.
 license: MIT
@@ -18,13 +18,13 @@ metadata:
 
 # Papermark CLI Skill
 
-Drive [Papermark](https://www.papermark.com) — document sharing, secure links, and
-virtual data rooms — through the `papermark` command-line tool.
+Drive [Papermark](https://www.papermark.com) — virtual data rooms, secure links, and
+document sharing — through the `papermark` command-line tool.
 
 | Property | Value |
 |----------|-------|
 | **name** | papermark |
-| **description** | Share documents, create secure links and data rooms, and read analytics from the CLI |
+| **description** | Build data rooms, share documents behind secure links, and read analytics from the CLI |
 | **allowed-tools** | `Bash(papermark:*)` |
 | **npm** | https://www.npmjs.com/package/papermark |
 | **repo** | https://github.com/papermark/papermark |

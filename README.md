@@ -1,9 +1,9 @@
 # Papermark
 
-Papermark is the document-sharing and virtual data room layer for your agents.
-Share documents behind secure links (password, email-gating, expiry, watermarks,
-screenshot protection), build and organize data rooms for deals and due
-diligence, and read view analytics down to per-page read time. It's the
+Papermark is the virtual data room and secure document-sharing platform for your
+agents. Build and organize data rooms for deals and due diligence, share documents
+behind secure links (password, email-gating, expiry, watermarks, screenshot
+protection), and read view analytics down to per-page read time. It's the
 open-source alternative to DocSend.
 
 This repo is the canonical, official home for the plugins, skills, and other
@@ -18,8 +18,8 @@ and as a standalone collection of skills installable via the
 
 The bundled skills live under [`plugins/papermark/skills/`](./plugins/papermark/skills/):
 
-- **`papermark-overview`** — what Papermark is, the data model (documents, links,
-  data rooms, viewers, analytics), and the rules for sharing safely.
+- **`papermark-overview`** — what Papermark is, the data model (data rooms,
+  documents, links, viewers, analytics), and the rules for sharing safely.
 - **`papermark-cli`** — driving Papermark from the command line with the
   published [`papermark` CLI](https://www.npmjs.com/package/papermark), including
   scripts and CI.
