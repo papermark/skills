@@ -81,9 +81,6 @@ npx skills add papermark/skills
 npx skills add papermark/skills --skill papermark-cli
 ```
 
-Or download the latest tagged release zip from
-[GitHub Releases](https://github.com/papermark/skills/releases/latest).
-
 ### Using the CLI directly
 
 The `papermark-cli` skill shells out to the published CLI (Node.js ≥ 24):
