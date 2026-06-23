@@ -1,0 +1,19 @@
+{
+    "name": "papermark-skills",
+    "description": "Official Papermark plugins for AI agents.",
+    "owner": {
+        "name": "Papermark",
+        "url": "https://www.papermark.com"
+    },
+    "plugins": [
+        {
+            "name": "papermark",
+            "description": "Papermark is the document-sharing and virtual data room layer for your agents. Share documents behind secure links (password, email-gating, expiry, watermarks, screenshot protection), build and organize data rooms for deals and due diligence, and read view analytics down to per-page read time. Makes Codex fluent in Papermark: documents, links, data rooms, viewers, and analytics. Bundles the official Papermark MCP server and works with the published `papermark` CLI.",
+            "category": "productivity",
+            "source": "./plugins/papermark"
+        }
+    ],
+    "interface": {
+        "displayName": "Papermark"
+    }
+}
