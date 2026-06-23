@@ -3,8 +3,7 @@
 Papermark is the virtual data room and secure document-sharing platform for your
 agents. Build and organize data rooms for deals and due diligence, share documents
 behind secure links (password, email-gating, expiry, watermarks, screenshot
-protection), and read view analytics down to per-page read time. It's the
-open-source alternative to DocSend.
+protection), and read view analytics down to per-page read time.
 
 This repo is the canonical, official home for the plugins, skills, and other
 artifacts we ship to make Papermark as fluent to agents as it already is to the
