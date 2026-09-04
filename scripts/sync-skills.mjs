@@ -19,6 +19,8 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const TARGETS = [
   { plugin: "providers/claude/plugin", assets: false },
   { plugin: "providers/codex/plugin", assets: true },
+  { plugin: "providers/cursor/plugin", assets: false },
+  { plugin: "providers/grok/plugin", assets: false },
 ];
 
 const check = process.argv.includes("--check");

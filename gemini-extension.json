@@ -1,0 +1,13 @@
+{
+  "name": "papermark",
+  "version": "0.1.0",
+  "description": "Virtual data rooms and secure document sharing. Build data rooms, share documents behind secure links, and read view analytics.",
+  "mcpServers": {
+    "papermark": {
+      "httpUrl": "https://mcp.papermark.com/mcp",
+      "oauth": {
+        "enabled": true
+      }
+    }
+  }
+}
