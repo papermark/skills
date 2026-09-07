@@ -7,15 +7,16 @@ protection), and read view analytics down to per-page read time.
 
 This repo is the canonical, official home for the plugins, skills, and other
 artifacts we ship to make Papermark as fluent to agents as it already is to the
-teams who use it. Today that ships as an installable plugin for
-[Claude Code](https://code.claude.com) and [Codex](https://developers.openai.com/codex),
-and as a standalone collection of skills installable via the
-[`skills` CLI](https://github.com/vercel-labs/skills) for any agent that consumes
-[agentskills.io](https://agentskills.io)–format skills.
+teams who use it. It ships as an installable plugin for
+[Claude Code](https://code.claude.com), [Codex](https://developers.openai.com/codex),
+[Cursor](https://cursor.com), and [Grok Build](https://x.ai), as a
+[Gemini CLI](https://geminicli.com) extension, and as a standalone collection of
+skills installable via the [`skills` CLI](https://github.com/vercel-labs/skills)
+for any agent that consumes [agentskills.io](https://agentskills.io)–format skills.
 
 ## What's inside
 
-The bundled skills live under [`plugins/papermark/skills/`](./plugins/papermark/skills/):
+The bundled skills live under [`skills/`](./skills):
 
 - **`papermark-overview`** — what Papermark is, the data model (data rooms,
   documents, links, viewers, analytics), and the rules for sharing safely.
@@ -23,8 +24,8 @@ The bundled skills live under [`plugins/papermark/skills/`](./plugins/papermark/
   published [`papermark` CLI](https://www.npmjs.com/package/papermark), including
   scripts and CI.
 
-The official Papermark MCP server (`mcp.papermark.com/mcp`) is auto-wired via
-`.mcp.json`, so the plugin gives the agent native Papermark tools out of the box.
+The official Papermark MCP server (`https://mcp.papermark.com/mcp`) is wired up by
+every plugin, so the agent gets native Papermark tools out of the box.
 
 ## Install
 
@@ -56,20 +57,35 @@ Then enable the plugin via the Codex TUI's plugins menu, or by adding to
 enabled = true
 ```
 
-If you'd rather wire the MCP server manually instead of via the plugin, add the
-following to `~/.codex/config.toml` (the plugin handles this automatically when
-enabled — this is just an escape hatch):
+### Cursor
 
-```toml
-[[mcp_servers]]
-name = "papermark"
-type = "http"
-url = "https://mcp.papermark.com/mcp"
+Add this repo as a marketplace from Cursor's plugin settings
+(`https://github.com/papermark/skills`), then install the `papermark` plugin.
+Cursor reads [`.cursor-plugin/marketplace.json`](./.cursor-plugin/marketplace.json)
+from the repo root.
+
+### Grok Build
+
+```bash
+grok plugin install papermark/skills#providers/grok/plugin --trust
 ```
+
+You can also register the repo as a marketplace source under
+`[[marketplace.sources]]` in `~/.grok/config.toml` and install it from
+`/marketplace` inside a Grok Build session.
+
+### Gemini CLI
+
+```bash
+gemini extensions install https://github.com/papermark/skills
+```
+
+The extension wires up the Papermark MCP server over OAuth. Gemini CLI doesn't
+consume the bundled skills — add those with the `skills` CLI below.
 
 ### Standalone skills (any agent)
 
-For Cursor, OpenCode, Gemini CLI, or any other agent that consumes
+For OpenCode, Zed, Continue, Windsurf, or any other agent that consumes
 [Agent Skills](https://agentskills.io):
 
 ```bash
@@ -80,7 +96,19 @@ npx skills add papermark/skills
 npx skills add papermark/skills --skill papermark-cli
 ```
 
-### Using the CLI directly
+### Manual MCP wiring
+
+If you'd rather wire the MCP server up yourself instead of installing a plugin,
+point any MCP client at:
+
+```
+https://mcp.papermark.com/mcp
+```
+
+It's a streamable HTTP server and authenticates over OAuth, so most clients only
+need the URL.
+
+## Using the CLI directly
 
 The `papermark-cli` skill shells out to the published CLI (Node.js ≥ 24):
 
@@ -94,18 +122,36 @@ papermark doctor       # confirm auth + connectivity
 
 ```
 .
-├── .claude-plugin/marketplace.json     # Claude marketplace catalog
-├── .agents/plugins/marketplace.json    # Codex marketplace catalog
-├── .mcp.json                           # top-level MCP wiring
-└── plugins/papermark/                  # the v1 plugin
-    ├── .claude-plugin/plugin.json
-    ├── .codex-plugin/plugin.json
-    ├── .mcp.json
-    ├── assets/
-    └── skills/
-        ├── papermark-overview/
-        └── papermark-cli/
+├── .claude-plugin/marketplace.json      # Claude Code catalog
+├── .agents/plugins/marketplace.json     # Codex catalog
+├── .cursor-plugin/marketplace.json      # Cursor catalog
+├── .grok-plugin/marketplace.json        # Grok Build catalog
+├── gemini-extension.json                # Gemini CLI extension
+├── .mcp.json                            # MCP wiring for this repo itself
+├── skills/                              # canonical skills — edit these
+├── assets/                              # canonical brand assets
+├── scripts/sync-skills.mjs              # fans skills/ + assets/ into providers
+└── providers/                           # one plugin per agent harness
+    ├── README.md
+    ├── claude/plugin/
+    ├── codex/plugin/
+    ├── cursor/plugin/
+    └── grok/plugin/
 ```
+
+## Contributing
+
+Skills are authored once in [`skills/`](./skills) and copied into each provider
+plugin, because every harness installs a plugin by copying its own directory.
+Never edit the copies under `providers/*/plugin/skills/` — edit the source and
+re-run the sync:
+
+```bash
+node scripts/sync-skills.mjs
+```
+
+CI runs `node scripts/sync-skills.mjs --check` and fails on drift. See
+[`providers/README.md`](./providers/README.md) for how to add a new harness.
 
 ## Links
 

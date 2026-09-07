@@ -1,0 +1,41 @@
+name: Skills
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    name: Provider copies match canonical skills
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
+      - name: Check provider plugins are in sync
+        run: node scripts/sync-skills.mjs --check
+
+      - name: Validate manifests
+        run: |
+          for f in \
+            .claude-plugin/marketplace.json \
+            .agents/plugins/marketplace.json \
+            .cursor-plugin/marketplace.json \
+            .grok-plugin/marketplace.json \
+            gemini-extension.json \
+            .mcp.json \
+            providers/claude/plugin/.claude-plugin/plugin.json \
+            providers/claude/plugin/.mcp.json \
+            providers/codex/plugin/.codex-plugin/plugin.json \
+            providers/cursor/plugin/.cursor-plugin/plugin.json \
+            providers/cursor/plugin/mcp.json \
+            providers/grok/plugin/.grok-plugin/plugin.json \
+            providers/grok/plugin/.mcp.json
+          do
+            node -e "JSON.parse(require('fs').readFileSync('$f','utf8'))" || exit 1
+            echo "ok $f"
+          done

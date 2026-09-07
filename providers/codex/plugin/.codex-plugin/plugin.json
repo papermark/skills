@@ -1,0 +1,59 @@
+{
+  "name": "papermark",
+  "version": "0.1.0",
+  "description": "Papermark is the virtual data room and secure document-sharing platform for your agents. Build and organize data rooms for deals and due diligence, share documents behind secure links (password, email-gating, expiry, watermarks, screenshot protection), and read view analytics down to per-page read time. Makes Codex fluent in Papermark: data rooms, documents, links, viewers, and analytics. Bundles the official Papermark MCP server and works with the published `papermark` CLI.",
+  "author": {
+    "name": "Papermark",
+    "url": "https://www.papermark.com"
+  },
+  "homepage": "https://www.papermark.com",
+  "repository": "https://github.com/papermark/skills",
+  "license": "MIT",
+  "keywords": [
+    "papermark",
+    "dataroom",
+    "data-room",
+    "virtual-data-room",
+    "document-sharing",
+    "secure-file-sharing",
+    "access-links",
+    "share-links",
+    "watermark",
+    "analytics",
+    "due-diligence",
+    "deal-room",
+    "pitch-deck",
+    "fundraising",
+    "data-privacy",
+    "document-tracking",
+    "mcp",
+    "cli"
+  ],
+  "skills": "./skills/",
+  "mcpServers": {
+    "papermark": {
+      "type": "http",
+      "url": "https://mcp.papermark.com/mcp"
+    }
+  },
+  "interface": {
+    "displayName": "Papermark",
+    "shortDescription": "Virtual data rooms and secure document sharing for your agents.",
+    "longDescription": "Papermark is the virtual data room and secure document-sharing platform for your agents. Build and organize data rooms for deals and due diligence, share documents behind secure links (password, email-gating, expiry, watermarks, screenshot protection), and read view analytics down to per-page read time. Makes Codex fluent in your Papermark workspace: data rooms, documents, links, viewers, and analytics. Bundles the official Papermark MCP server and works with the published `papermark` CLI.",
+    "developerName": "Papermark",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://www.papermark.com",
+    "privacyPolicyURL": "https://www.papermark.com/privacy",
+    "termsOfServiceURL": "https://www.papermark.com/terms",
+    "logo": "./assets/logo.png",
+    "composerIcon": "./assets/icon.svg",
+    "brandColor": "#000000",
+    "defaultPrompt": [
+      "Share this pitch deck as a password-protected link.",
+      "Create a data room for the Acme deal and add these documents.",
+      "Who viewed the deck I sent last week, and for how long?"
+    ],
+    "screenshots": []
+  }
+}
