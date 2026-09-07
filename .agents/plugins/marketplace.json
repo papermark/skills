@@ -14,8 +14,10 @@
       "description": "Papermark is the virtual data room and secure document-sharing platform for your agents. Build and organize data rooms for deals and due diligence, share documents behind secure links (password, email-gating, expiry, watermarks, screenshot protection), and read view analytics down to per-page read time. Makes Codex fluent in Papermark: data rooms, documents, links, viewers, and analytics. Bundles the official Papermark MCP server and works with the published `papermark` CLI.",
       "category": "Productivity",
       "source": {
-        "source": "local",
-        "path": "./providers/codex/plugin"
+        "source": "git-subdir",
+        "url": "https://github.com/papermark/skills.git",
+        "path": "providers/codex/plugin",
+        "ref": "main"
       },
       "policy": {
         "installation": "AVAILABLE",
