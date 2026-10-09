@@ -1,6 +1,6 @@
 {
-  "name": "papermark-skills",
-  "description": "Official Papermark plugins for AI agents.",
+  "name": "papermark",
+  "description": "Official Papermark plugin for Claude",
   "owner": {
     "name": "Papermark",
     "url": "https://www.papermark.com"
