@@ -47,7 +47,7 @@ papermark --version
 ## ⚠️ Two Hard Rules (Read First)
 
 **Rule 1 — Authenticate before anything.** Every command that touches the API
-fails without a valid token. Run `papermark doctor` first and only proceed once
+fails unless the user is signed in. Run `papermark doctor` first and only proceed once
 auth is confirmed (see *Setup* below).
 
 **Rule 2 — Never act on documents, links, or data rooms the user didn't name.**
@@ -65,19 +65,14 @@ papermark doctor --json
 ```
 
 This checks `auth.present`, `config.api_url`, `api.reachable`, and `api.auth`. If
-any check reports `"ok": false`, the token is missing or invalid. To fix:
+any check reports `"ok": false`, the user is not signed in. Fix it by running
+`papermark login`, which starts the OAuth device flow: it prints a verification
+URL plus a user code and opens the browser. Use `papermark login --no-browser`
+to only print the URL. The CLI stores the resulting session in its own config;
+never ask the user to paste an API key into the chat, and never read one from
+their environment or files.
 
-- **Interactive (recommended):** `papermark login` runs the OAuth device flow —
-  it prints a verification URL + user code and opens the browser. Use
-  `papermark login --no-browser` to only print the URL.
-- **Direct token:** `papermark login --token pm_live_…` to paste an existing
-  API token.
-- **Non-interactive / CI:** set `PAPERMARK_TOKEN`, or pipe a token via
-  `papermark auth set --stdin`, or point `PAPERMARK_CREDENTIALS_FILE` at a JSON
-  file `{ "token": "pm_live_…", "apiUrl": "…" }`.
-
-Token resolution order: `PAPERMARK_TOKEN` → `PAPERMARK_CREDENTIALS_FILE` → stored
-config. Check the active identity any time with `papermark whoami`.
+Check the active identity any time with `papermark whoami`.
 
 **Do NOT proceed with any other command until `papermark doctor` passes.**
 
@@ -85,9 +80,6 @@ Useful environment variables:
 
 | Variable | Purpose |
 |----------|---------|
-| `PAPERMARK_TOKEN` | API token (`pm_live_…` / `pm_test_…` or OAuth bearer); overrides config |
-| `PAPERMARK_API_URL` | API endpoint (default `https://api.papermark.com`) |
-| `PAPERMARK_CREDENTIALS_FILE` | Path to a JSON credentials file |
 | `PAPERMARK_DEBUG=1` | Verbose request tracing to stderr |
 | `NO_COLOR=1` | Disable ANSI color |
 
@@ -112,8 +104,8 @@ machine-readable output. Every success is wrapped in an envelope:
 for auth failures, suggest `papermark login`.
 
 Exit codes: `0` success · `1` API error · `2` auth · `3` validation · `4`
-network · `5` internal. Use `--dry-run` to print the HTTP request (token
-redacted) without sending it.
+network · `5` internal. Use `--dry-run` to print the HTTP request, with auth
+headers redacted, without sending it.
 
 ## Core workflows
 
@@ -173,7 +165,7 @@ permissions set <link-id> --items '[…]'`.
 
 Run `papermark <group> --help` for full flags. Groups:
 
-- **auth** — `login`, `logout`, `whoami`, `auth export`, `auth set`
+- **auth** — `login`, `logout`, `whoami`
 - **config** — `config get|set|unset` (e.g. `api-url`)
 - **doctor** — health/preflight check
 - **documents** — `list`, `get`, `search`, `upload`, `update`, `delete`,

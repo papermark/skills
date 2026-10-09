@@ -30,9 +30,9 @@ skills and the MCP server declaration.
 - **CLI (optional):** the `papermark-cli` skill tells Claude to run the
   `papermark` command if it is installed (Node.js 24 or newer). The CLI talks
   to the Papermark API at `https://api.papermark.com`. You sign in with
-  `papermark login` (OAuth device flow) or provide an API token through the
-  CLI's own configuration. The plugin never reads or forwards your token
-  itself.
+  `papermark login`, an OAuth device flow in your browser, and the CLI keeps
+  the session in its own configuration. The plugin never reads, stores, or
+  forwards credentials itself.
 
 Nothing else is fetched or sent anywhere.
 
