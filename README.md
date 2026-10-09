@@ -141,6 +141,17 @@ papermark doctor       # confirm auth + connectivity
 
 ## Contributing
 
+### Package for the ChatGPT and Codex directory
+
+```bash
+python3 scripts/package-openai.py
+```
+
+Builds `dist/papermark-openai-0.1.1.zip` from the Codex provider's portable
+manifest, remote MCP configuration, bundled skills, and branding. See the
+[OpenAI submission guide](./providers/codex/README.md) for validation, review
+scenarios, and the remaining dashboard steps.
+
 Skills are authored once in [`skills/`](./skills) and copied into each provider
 plugin, because every harness installs a plugin by copying its own directory.
 Never edit the copies under `providers/*/plugin/skills/` — edit the source and

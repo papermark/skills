@@ -1,7 +1,7 @@
 {
   "name": "papermark",
-  "version": "0.1.0",
-  "description": "Papermark is the virtual data room and secure document-sharing platform for your agents. Build and organize data rooms for deals and due diligence, share documents behind secure links (password, email-gating, expiry, watermarks, screenshot protection), and read view analytics down to per-page read time. Makes Codex fluent in Papermark: data rooms, documents, links, viewers, and analytics. Bundles the official Papermark MCP server and works with the published `papermark` CLI.",
+  "version": "0.1.1",
+  "description": "Create data rooms, share documents with access controls, and inspect document view analytics in Papermark.",
   "author": {
     "name": "Papermark",
     "url": "https://www.papermark.com"
@@ -38,15 +38,18 @@
   },
   "interface": {
     "displayName": "Papermark",
-    "shortDescription": "Virtual data rooms and secure document sharing for your agents.",
-    "longDescription": "Papermark is the virtual data room and secure document-sharing platform for your agents. Build and organize data rooms for deals and due diligence, share documents behind secure links (password, email-gating, expiry, watermarks, screenshot protection), and read view analytics down to per-page read time. Makes Codex fluent in your Papermark workspace: data rooms, documents, links, viewers, and analytics. Bundles the official Papermark MCP server and works with the published `papermark` CLI.",
+    "shortDescription": "Secure sharing and data rooms",
+    "longDescription": "Use Papermark to organize data rooms for fundraising, deals, and due diligence; create protected document links; and inspect document view analytics. Connect your Papermark account to use the bundled remote MCP tools. Available actions and data depend on your account permissions and the tools exposed by the server. Includes guidance on documents, links, data rooms, and analytics, plus a CLI skill for environments with shell access and Node.js 24 or newer. The CLI requires separate authentication.",
     "developerName": "Papermark",
     "category": "Productivity",
-    "capabilities": ["Read", "Write"],
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
     "websiteURL": "https://www.papermark.com",
     "privacyPolicyURL": "https://www.papermark.com/privacy",
     "termsOfServiceURL": "https://www.papermark.com/terms",
-    "logo": "./assets/logo.png",
+    "logo": "./assets/icon.svg",
     "composerIcon": "./assets/icon.svg",
     "brandColor": "#000000",
     "defaultPrompt": [
@@ -54,6 +57,7 @@
       "Create a data room for the Acme deal and add these documents.",
       "Who viewed the deck I sent last week, and for how long?"
     ],
-    "screenshots": []
+    "screenshots": [],
+    "supportURL": "https://www.papermark.com/help"
   }
 }

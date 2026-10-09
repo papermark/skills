@@ -19,6 +19,9 @@ jobs:
       - name: Check provider plugins are in sync
         run: node scripts/sync-skills.mjs --check
 
+      - name: Validate OpenAI submission package
+        run: python3 scripts/package-openai.py --check
+
       - name: Validate manifests
         run: |
           for f in \
@@ -31,6 +34,8 @@ jobs:
             providers/claude/plugin/.claude-plugin/plugin.json \
             providers/claude/plugin/.mcp.json \
             providers/codex/plugin/.codex-plugin/plugin.json \
+            providers/codex/plugin/plugin.json \
+            providers/codex/plugin/mcp.json \
             providers/cursor/plugin/.cursor-plugin/plugin.json \
             providers/cursor/plugin/mcp.json \
             providers/grok/plugin/.grok-plugin/plugin.json \

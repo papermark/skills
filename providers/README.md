@@ -11,7 +11,7 @@ stay isolated as more plugins are added.
 | Provider | Plugin | Manifest |
 | --- | --- | --- |
 | [Claude Code](./claude/plugin) | `providers/claude/plugin` | `.claude-plugin/plugin.json` |
-| [Codex](./codex/plugin) | `providers/codex/plugin` | `.codex-plugin/plugin.json` |
+| [ChatGPT and Codex](./codex/README.md) | `providers/codex/plugin` | `plugin.json` with `.codex-plugin/plugin.json` compatibility fallback |
 | [Cursor](./cursor/plugin) | `providers/cursor/plugin` | `.cursor-plugin/plugin.json` |
 | [Grok Build](./grok/plugin) | `providers/grok/plugin` | `.grok-plugin/plugin.json` |
 
@@ -26,7 +26,9 @@ repo root.
 Every provider wires up the same remote MCP server
 (`https://mcp.papermark.com/mcp`), just in each harness's own config shape —
 `.mcp.json` for Claude and Grok, `mcp.json` for Cursor, and inline under
-`mcpServers` in the manifest for Codex.
+`mcpServers` in the compatibility manifest for Codex. The portable ChatGPT and
+Codex package uses `mcp.json` with the Agent Plugins schema and
+`streamable-http` transport.
 
 ## Skills
 
