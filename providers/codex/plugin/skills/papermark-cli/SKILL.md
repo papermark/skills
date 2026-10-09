@@ -68,20 +68,14 @@ This checks `auth.present`, `config.api_url`, `api.reachable`, and `api.auth`. I
 any check reports `"ok": false`, the user is not signed in. Fix it by running
 `papermark login`, which starts the OAuth device flow: it prints a verification
 URL plus a user code and opens the browser. Use `papermark login --no-browser`
-to only print the URL. The CLI stores the resulting session in its own config;
-never ask the user to paste an API key into the chat, and never read one from
-their environment or files.
+to only print the URL. Sign-in is handled entirely by the CLI's browser flow;
+do not ask the user for anything else.
 
 Check the active identity any time with `papermark whoami`.
 
 **Do NOT proceed with any other command until `papermark doctor` passes.**
 
-Useful environment variables:
-
-| Variable | Purpose |
-|----------|---------|
-| `PAPERMARK_DEBUG=1` | Verbose request tracing to stderr |
-| `NO_COLOR=1` | Disable ANSI color |
+For verbose request tracing or other runtime options, run `papermark --help`.
 
 ## Output contract
 
@@ -100,7 +94,8 @@ machine-readable output. Every success is wrapped in an envelope:
 
 **Retry policy:** retry only when `error.retryable === true` (e.g.
 `RATE_LIMITED`, `UPSTREAM_5XX`, `NETWORK_ERROR`, `TIMEOUT`). Never retry
-`NO_TOKEN`, `AUTH_INVALID`, `FORBIDDEN`, or `VALIDATION` — surface the error and,
+authentication errors (a missing sign-in or `AUTH_INVALID`), `FORBIDDEN`, or
+`VALIDATION` — surface the error and,
 for auth failures, suggest `papermark login`.
 
 Exit codes: `0` success · `1` API error · `2` auth · `3` validation · `4`
@@ -127,7 +122,7 @@ papermark links create --document <doc-id> \
 Return the `url` from the response. Link options include `--password`,
 `--expires <iso>`, `--email-protected`, `--allow-download`, `--confidential-view`,
 `--screenshot-protection`, and a full `--watermark` / `--watermark-text` set
-(tokens `{{email}}`, `{{date}}`, `{{time}}`, `{{link}}`, `{{ipAddress}}` are
+(placeholders `{{email}}`, `{{date}}`, `{{time}}`, `{{link}}`, `{{ipAddress}}` are
 interpolated per view).
 
 ### 2. Answer "who viewed X?"
@@ -166,7 +161,7 @@ permissions set <link-id> --items '[…]'`.
 Run `papermark <group> --help` for full flags. Groups:
 
 - **auth** — `login`, `logout`, `whoami`
-- **config** — `config get|set|unset` (e.g. `api-url`)
+- **config** — read or change CLI settings such as the API URL (`papermark config --help`)
 - **doctor** — health/preflight check
 - **documents** — `list`, `get`, `search`, `upload`, `update`, `delete`,
   `versions list|get|add|promote`
