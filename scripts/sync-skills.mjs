@@ -17,7 +17,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
 // `assets` is only fanned out to providers whose manifest references it.
 const TARGETS = [
-  { plugin: "providers/claude/plugin", assets: false },
+  { plugin: "providers/claude/plugin", assets: true },
   { plugin: "providers/codex/plugin", assets: true },
   { plugin: "providers/cursor/plugin", assets: false },
   { plugin: "providers/grok/plugin", assets: false },
